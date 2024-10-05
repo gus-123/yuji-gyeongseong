@@ -47,6 +47,9 @@ jobs:
       - name: ECR에 Docker 이미지 Push하기
         run: docker push ${{ steps.login-ecr.outputs.registry }}/yuji-gyeongseong:latest
 
+      - name: Docker 컨테이너 실행
+        run: docker run -d -p 8082:8082 ${{ steps.login-ecr.outputs.registry }}/yuji-gyeongseong:latest
+
       - name: 압축하기
         run: tar -czvf $GITHUB_SHA.tar.gz appspec.yml scripts
 
